@@ -1,0 +1,95 @@
+/* 全局变量整合 */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --base-spacing: 1.5rem;
+  --grid-gap: 1.2rem;
+  --card-min-width: 280px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1200px;
+}
+
+/* 基础布局
+html {
+  background: url('https://pic.imgdb.cn/item/669377dbd9c307b7e9726828.png') center/cover no-repeat fixed;
+  min-height: 100vh;
+} */
+
+/* 响应式网格系统 */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+  gap: var(--grid-gap);
+  padding: var(--grid-gap);
+  width: 100%;
+}
+
+/* 卡片组件优化 */
+.grid-card {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  min-height: 150px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+/* 菜单系统响应式 */
+.the-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--base-spacing);
+  margin: var(--base-spacing) 0;
+}
+
+/* 左侧导航响应式 */
+.layout__left {
+  flex: 0 1 280px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  padding: var(--base-spacing);
+  min-width: 240px;
+}
+
+/* 响应式断点处理 */
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .layout__left {
+    flex-basis: 100%;
+    min-width: auto;
+  }
+  
+  .grid-card {
+    min-height: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .responsive-grid {
+    --card-min-width: 320px;
+  }
+}
+
+/* 按钮交互优化 */
+.MuiButtonBase-root {
+  background: var(--glass-bg) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.MuiButtonBase-root:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  transform: scale(1.05);
+}
+
+/* 文字系统优化 */
+.MuiTypography-root {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  hyphens: auto;
+}
